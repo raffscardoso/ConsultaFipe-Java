@@ -66,6 +66,21 @@ public class ApiClient {
 
   }
 
+  public void processarPrecos(String marcasUrl, String codigoMarca, String codigoVeiculo, String idAno) {
+    String precoUrl = marcasUrl + "/" + codigoMarca + "/modelos/" + codigoVeiculo + "/anos/" + idAno;
+
+    try {
+      String responseBody = executarGet(precoUrl);
+
+      PrecoFinalDTO modelo = objectMapper.readValue(responseBody, PrecoFinalDTO.class);
+
+      Menu.exibirDetalhesCompletos(modelo);
+
+    } catch (Exception e) {
+      System.err.println("Erro ao processar precos: " + e.getMessage());
+    }
+  }
+
   private String executarGet(String endpoint) throws Exception {
     HttpRequest request = HttpRequest.newBuilder(URI.create(endpoint)).GET().build();
     HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());

@@ -5,6 +5,7 @@ import java.util.List;
 import com.raffs.tabelaFipe.services.AnosDTO;
 import com.raffs.tabelaFipe.services.CodigoNomeDTO;
 import com.raffs.tabelaFipe.services.MarcaDTO;
+import com.raffs.tabelaFipe.services.PrecoFinalDTO;
 
 public class Menu {
 
@@ -32,9 +33,14 @@ public class Menu {
     exibirListaCodigoNome(anos);
   }
 
+  public static void exibirDetalhesCompletos(PrecoFinalDTO modelo) {
+    System.out.printf("Modelo: %s\nValor: %s\nAno: %s\n ", modelo.Modelo(), modelo.Valor(), modelo.AnoModelo());
+  }
+
   private static void exibirListaCodigoNome(List<? extends CodigoNomeDTO> itens) {
     itens.stream()
         .map(item -> String.format("[%s] - %s", item.codigo(), item.nome()))
         .forEach(System.out::println);
   }
+
 }

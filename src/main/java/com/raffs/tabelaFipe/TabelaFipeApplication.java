@@ -55,9 +55,13 @@ public class TabelaFipeApplication implements CommandLineRunner {
     String codigoMarca = scanner.nextLine();
     apiClient.processarModelos(marcasUrl, codigoMarca);
 
-    System.out.println("Digite o codigo do veiculo para consultar anos disponiveis");
+    System.out.println("Digite o codigo do veiculo para consultar anos disponiveis: ");
     String codigoVeiculo = scanner.nextLine();
     apiClient.processarAnos(marcasUrl, codigoMarca, codigoVeiculo);
+
+    System.out.println("Digite o codigo do ano para consultrar preços: ");
+    String idAno = scanner.nextLine();
+    apiClient.processarPrecos(marcasUrl, codigoMarca, codigoVeiculo, idAno);
 
     scanner.close();
   }
